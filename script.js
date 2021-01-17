@@ -48,8 +48,37 @@ function calculation() {
   //calculating the root mean square of input data
   root = Math.sqrt(mean);
 
+  //get the file input extension
+  var extension = document.getElementById("fileInput").value.split(".")[1];
+
   //deciding either the data is correct or wrong
-  if (length <= 1) {
+  if (extension == "dat" && length > 1)  {
+    //showing the data result
+    document.getElementById("input").innerHTML = inputArray.join("<p></p>");
+    document.getElementById("square").innerHTML = square.join("<p></p>");
+    document.getElementById("length").innerHTML = length;
+    document.getElementById("sum").innerHTML = sum;
+    document.getElementById("mean").innerHTML = mean;
+    document.getElementById("root").innerHTML = root;
+    $("#fileLabel, #input, #square, #length, #sum, #mean, #root").removeClass("border-danger text-danger");
+    $("#fileLabel, #input, #square, #length, #sum, #mean, #root").addClass("border-primary");
+    $("#dataReq").removeClass("text-danger font-weight-bold");
+    $("#dataReq").addClass("text-secondary");
+  }
+  else if (extension == "txt" && length > 1)  {
+    //showing the data result
+    document.getElementById("input").innerHTML = inputArray.join("<p></p>");
+    document.getElementById("square").innerHTML = square.join("<p></p>");
+    document.getElementById("length").innerHTML = length;
+    document.getElementById("sum").innerHTML = sum;
+    document.getElementById("mean").innerHTML = mean;
+    document.getElementById("root").innerHTML = root;
+    $("#fileLabel, #input, #square, #length, #sum, #mean, #root").removeClass("border-danger text-danger");
+    $("#fileLabel, #input, #square, #length, #sum, #mean, #root").addClass("border-primary");
+    $("#dataReq").removeClass("text-danger font-weight-bold");
+    $("#dataReq").addClass("text-secondary");
+  }
+  else {
     //warning that the data doesn't meet the requierments
     document.getElementById("input").innerHTML = "Your data doesn't meet the requierments";
     document.getElementById("square").innerHTML = "Your data doesn't meet the requierments";
@@ -62,18 +91,5 @@ function calculation() {
     $("#dataReq").removeClass("text-secondary");
     $("#dataReq").addClass("text-danger font-weight-bold");
     $("#input, #square, #length, #sum, #mean, #root").addClass("text-danger");
-  }
-  else {
-    //showing the data result
-    document.getElementById("input").innerHTML = inputArray.join("<p></p>");
-    document.getElementById("square").innerHTML = square.join("<p></p>");
-    document.getElementById("length").innerHTML = length;
-    document.getElementById("sum").innerHTML = sum;
-    document.getElementById("mean").innerHTML = mean;
-    document.getElementById("root").innerHTML = root;
-    $("#fileLabel, #input, #square, #length, #sum, #mean, #root").removeClass("border-danger text-danger");
-    $("#fileLabel, #input, #square, #length, #sum, #mean, #root").addClass("border-primary");
-    $("#dataReq").removeClass("text-danger font-weight-bold");
-    $("#dataReq").addClass("text-secondary");
   };
 };
