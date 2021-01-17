@@ -8,12 +8,17 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://kit.fontawesome.com/5c503e8b03.js" crossorigin="anonymous"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <link rel=icon href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/svgs/solid/square-root-alt.svg>
         <title>RMS Calculator</title>
     </head>
     <body onload="init()">
         <div class="container">
-            <h1 class="pt-5">Root Mean Square Calculator</h1>
+            <h1 class="pt-5 font-weight-bold">Root Mean Square (RMS) Calculator</h1>
+            <br/>
+            <br/>
+            <h3>Formula: \(RMS=\left(\sqrt{{\sum_i^n x_i^2\over n}}\right)\)</h3>
             <br/>
             <p class="mb-4">Input your data here<i class="fas fa-chevron-circle-down text-primary px-2"></i>
                 <div class="custom-file mb-3">
@@ -32,7 +37,7 @@
             <div id="result">
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <p class="mb-4">Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                        <p class="mb-4">Input Data \(\left(x_i\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
                             <div id="input" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 text-center" style="max-width: fit-content;max-height: 250px;">
                                 <span class="text-secondary">Input Data</span>
                             </div>
@@ -40,7 +45,7 @@
                         <br/>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <p class="mb-4">Square of Each Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                        <p class="mb-4">Square of Each Input Data \(\left(x_i^2\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
                             <div id="square" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 text-center" style="max-width: fit-content;max-height: 250px;">
                                 <span class="text-secondary">Square of Each Input Data</span>
                             </div>
@@ -50,7 +55,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <p class="mb-4">Length of Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                        <p class="mb-4">Length of Input Data \(\left(n\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
                             <div id="length" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 text-center" style="max-width: fit-content;">
                                 <span class="text-secondary">Length of Input Data</span>
                             </div>
@@ -58,7 +63,7 @@
                         <br/>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <p class="mb-4">Sum of Square of Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                        <p class="mb-4">Sum of Square of Input Data \(\left(\sum_i^n x_i^2\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
                             <div id="sum" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 text-center" style="max-width: fit-content;">
                                 <span class="text-secondary">Sum of Square of Input Data</span>
                             </div>
@@ -68,7 +73,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <p class="mb-4">Mean Square of Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                        <p class="mb-4">Mean Square of Input Data \(\left({\sum_i^n x_i^2\over n}\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
                             <div id="mean" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 text-center" style="max-width: fit-content;">
                                 <span class="text-secondary">Mean Square of Input Data</span>
                             </div>
@@ -76,7 +81,7 @@
                         <br/>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <p class="mb-4 font-weight-bold">Root Mean Square of Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                        <p class="mb-4 font-weight-bold">Root Mean Square of Input Data \(\left(\sqrt{{\sum_i^n x_i^2\over n}}\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
                             <div id="root" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 text-center font-weight-bold" style="max-width: fit-content;">
                                 <span class="text-secondary">Root Mean Square of Input Data</span>
                             </div>
