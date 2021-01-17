@@ -18,9 +18,10 @@
             <p class="mb-4">Input your data here<i class="fas fa-chevron-circle-down text-primary px-2"></i>
                 <div class="custom-file mb-3">
                     <input id="fileInput" type="file" class="custom-file-input" name="filename">
-                    <label class="custom-file-label text-secondary border-primary" for="customFile">.txt or .dat</label>
+                    <label id="fileLabel" class="custom-file-label text-secondary border-primary" for="customFile">.txt or .dat</label>
                 </div>
-                <p class="text-secondary">Data Requierment:<br/>
+                <p id ="dataReq" class="text-secondary">Data Requierments:<br/>
+                    - Your data should be more than one value<br/>
                     - Your data should be in one column<br/>
                     - Your data extension should be .txt or .dat
                 </p>
@@ -29,38 +30,62 @@
                 <button onclick="calculation()" class="btn btn-primary btn-block">Calculate</button>
             </div>
             <div id="result">
-                <p class="mb-4">Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
-                    <div id="input" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;"">
-                        <span class="text-secondary">Input Data</span>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                            <div id="input" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 text-center" style="max-width: fit-content;max-height: 250px;">
+                                <span class="text-secondary">Input Data</span>
+                            </div>
+                        </p>
+                        <br/>
                     </div>
-                </p>
-                <p class="mb-4">Length of Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
-                    <div id="length" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;">
-                        <span class="text-secondary">Length of Input Data</span>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">Square of Each Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                            <div id="square" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 text-center" style="max-width: fit-content;max-height: 250px;">
+                                <span class="text-secondary">Square of Each Input Data</span>
+                            </div>
+                        </p>
+                        <br/>
                     </div>
-                </p>
-                <p class="mb-4">Square of Each Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
-                    <div id="square" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;">
-                        <span class="text-secondary">Square of Each Input Data</span>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">Length of Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                            <div id="length" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 text-center" style="max-width: fit-content;">
+                                <span class="text-secondary">Length of Input Data</span>
+                            </div>
+                        </p>
+                        <br/>
                     </div>
-                </p>
-                <p class="mb-4">Sum of Square of Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
-                    <div id="sum" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;">
-                        <span class="text-secondary">Sum of Square of Input Data</span>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">Sum of Square of Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                            <div id="sum" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 text-center" style="max-width: fit-content;">
+                                <span class="text-secondary">Sum of Square of Input Data</span>
+                            </div>
+                        </p>
+                        <br/>
                     </div>
-                </p>
-                <p class="mb-4">Mean Square of Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
-                    <div id="mean" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;">
-                        <span class="text-secondary">Mean Square of Input Data</span>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">Mean Square of Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                            <div id="mean" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 text-center" style="max-width: fit-content;">
+                                <span class="text-secondary">Mean Square of Input Data</span>
+                            </div>
+                        </p>
+                        <br/>
                     </div>
-                </p>
-                <p class="mb-4 font-weight-bold">Root Mean Square of Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
-                    <div id="root" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;">
-                        <span class="text-secondary">Root Mean Square of Input Data</span>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4 font-weight-bold">Root Mean Square of Input Data<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                            <div id="root" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 text-center font-weight-bold" style="max-width: fit-content;">
+                                <span class="text-secondary">Root Mean Square of Input Data</span>
+                            </div>
+                        </p>
+                        <br/>
                     </div>
-                </p>
+                </div>
             </div>
         </div>
+        <script src="script.js"></script>
     </body>
-    <script src="script.js"></script>
 </html>
