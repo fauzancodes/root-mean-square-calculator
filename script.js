@@ -5,7 +5,7 @@ $(".custom-file-input").on("change", function() {
 });
 
 //declaring variable
-var input, inputArray, length, square, sum, mean, root;
+var input, extension, inputArray, length, square, sum, mean, root;
 
 //get the input file data
 function init() {
@@ -25,79 +25,98 @@ function handleFileLoad(event){
 
 //calculating the rms 
 function calculation() {
+  //get the file input extension
+  extension = document.getElementById("fileInput").value.split(".").pop();
+  console.log(extension);
+
+  if (extension == "dat") {
+    inputing();
+    if (length > 1) {
+      calculating();
+      showResult();
+    }
+    else {
+      warning();
+    }
+  }
+  else {
+    if (extension == "txt") {
+      inputing();
+      if (length > 1) {
+        calculating();
+        showResult();
+      }
+      else {
+      warning();
+      }
+    }
+    else {
+      warning();
+    }
+  }
+};
+
+//inputing
+function inputing() {
   //converting input data from string to array
   inputArray = input.split("\n");
-  console.log(inputArray);
 
   //determining input data length
   length = inputArray.length;
-  console.log(length);
+};
 
+//calculate
+function calculating() {
   //calculating square of each input data
   square = [];
   for (i = 0; i < length; i++) {
     square[i] = Math.pow(inputArray[i],2);
   };
-  console.log(square);
 
   //calculating sum of square of input data
   sum = eval(square.join("+"));
-  console.log(sum);
 
   //calculating the mean square of input data
   mean = sum/length;
-  console.log(mean);
 
   //calculating the root mean square of input data
   root = Math.sqrt(mean);
+};
+
+//warning that the data doesn't meet the requierments
+function warning() {
+  console.log("Your data doesn't meet the requierments");
+  document.getElementById("input").innerHTML = "Your data doesn't meet the requierments";
+  document.getElementById("square").innerHTML = "Your data doesn't meet the requierments";
+  document.getElementById("length").innerHTML = "Your data doesn't meet the requierments";
+  document.getElementById("sum").innerHTML = "Your data doesn't meet the requierments";
+  document.getElementById("mean").innerHTML = "Your data doesn't meet the requierments";
+  document.getElementById("root").innerHTML = "Your data doesn't meet the requierments";
+  $("#fileLabel, #input, #square, #length, #sum, #mean, #root").removeClass("border-primary");
+  $("#fileLabel, #input, #square, #length, #sum, #mean, #root").addClass("border-danger");
+  $("#dataReq").removeClass("text-secondary");
+  $("#dataReq").addClass("text-danger font-weight-bold");
+  $("#input, #square, #length, #sum, #mean, #root").addClass("text-danger");
+};
+
+//showing the data result
+function showResult() {
+  console.log(inputArray);
+  document.getElementById("input").innerHTML = inputArray.join("<p></p>");
+  console.log(square);
+  document.getElementById("square").innerHTML = square.join("<p></p>");
+  console.log(length);
+  document.getElementById("length").innerHTML = length;
+  console.log(sum);
+  document.getElementById("sum").innerHTML = sum;
+  console.log(mean);
+  document.getElementById("mean").innerHTML = mean;
   console.log(root);
-
-  //get the file input extension
-  var extension = document.getElementById("fileInput").value.split(".")[1];
-  console.log(extension);
-
-  //deciding either the data is correct or wrong
-  if (extension == "dat" && length > 1)  {
-    //showing the data result
-    document.getElementById("input").innerHTML = inputArray.join("<p></p>");
-    document.getElementById("square").innerHTML = square.join("<p></p>");
-    document.getElementById("length").innerHTML = length;
-    document.getElementById("sum").innerHTML = sum;
-    document.getElementById("mean").innerHTML = mean;
-    document.getElementById("root").innerHTML = root;
-    $("#fileLabel, #input, #square, #length, #sum, #mean, #root").removeClass("border-danger text-danger");
-    $("#fileLabel, #input, #square, #length, #sum, #mean, #root").addClass("border-primary");
-    $("#dataReq").removeClass("text-danger font-weight-bold");
-    $("#dataReq").addClass("text-secondary");
-  }
-  else if (extension == "txt" && length > 1)  {
-    //showing the data result
-    document.getElementById("input").innerHTML = inputArray.join("<p></p>");
-    document.getElementById("square").innerHTML = square.join("<p></p>");
-    document.getElementById("length").innerHTML = length;
-    document.getElementById("sum").innerHTML = sum;
-    document.getElementById("mean").innerHTML = mean;
-    document.getElementById("root").innerHTML = root;
-    $("#fileLabel, #input, #square, #length, #sum, #mean, #root").removeClass("border-danger text-danger");
-    $("#fileLabel, #input, #square, #length, #sum, #mean, #root").addClass("border-primary");
-    $("#dataReq").removeClass("text-danger font-weight-bold");
-    $("#dataReq").addClass("text-secondary");
-  }
-  else {
-    //warning that the data doesn't meet the requierments
-    console.log("Your data doesn't meet the requierments");
-    document.getElementById("input").innerHTML = "Your data doesn't meet the requierments";
-    document.getElementById("square").innerHTML = "Your data doesn't meet the requierments";
-    document.getElementById("length").innerHTML = "Your data doesn't meet the requierments";
-    document.getElementById("sum").innerHTML = "Your data doesn't meet the requierments";
-    document.getElementById("mean").innerHTML = "Your data doesn't meet the requierments";
-    document.getElementById("root").innerHTML = "Your data doesn't meet the requierments";
-    $("#fileLabel, #input, #square, #length, #sum, #mean, #root").removeClass("border-primary");
-    $("#fileLabel, #input, #square, #length, #sum, #mean, #root").addClass("border-danger");
-    $("#dataReq").removeClass("text-secondary");
-    $("#dataReq").addClass("text-danger font-weight-bold");
-    $("#input, #square, #length, #sum, #mean, #root").addClass("text-danger");
-  };
+  document.getElementById("root").innerHTML = root;
+  $("#fileLabel, #input, #square, #length, #sum, #mean, #root").removeClass("border-danger text-danger");
+  $("#fileLabel, #input, #square, #length, #sum, #mean, #root").addClass("border-primary");
+  $("#dataReq").removeClass("text-danger font-weight-bold");
+  $("#dataReq").addClass("text-secondary");
 };
 
 //copy to clipboard
@@ -110,4 +129,4 @@ function copy(selector){
        .focus();
   document.execCommand("copy");
   $temp.remove();
-}
+};
