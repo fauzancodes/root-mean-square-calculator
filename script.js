@@ -52,6 +52,7 @@ function calculation() {
   //deciding either the data is correct or wrong
   if (extension == "dat" && length > 1)  {
     //showing the data result
+    console.log(extension, inputArray, length, square, sum, mean, root);
     document.getElementById("input").innerHTML = inputArray.join("<p></p>");
     document.getElementById("square").innerHTML = square.join("<p></p>");
     document.getElementById("length").innerHTML = length;
@@ -65,6 +66,7 @@ function calculation() {
   }
   else if (extension == "txt" && length > 1)  {
     //showing the data result
+    console.log(extension, inputArray, length, square, sum, mean, root);
     document.getElementById("input").innerHTML = inputArray.join("<p></p>");
     document.getElementById("square").innerHTML = square.join("<p></p>");
     document.getElementById("length").innerHTML = length;
@@ -78,6 +80,7 @@ function calculation() {
   }
   else {
     //warning that the data doesn't meet the requierments
+    console.log("Your data doesn't meet the requierments");
     document.getElementById("input").innerHTML = "Your data doesn't meet the requierments";
     document.getElementById("square").innerHTML = "Your data doesn't meet the requierments";
     document.getElementById("length").innerHTML = "Your data doesn't meet the requierments";
