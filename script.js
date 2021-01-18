@@ -32,12 +32,10 @@ function calculation() {
   length = inputArray.length;
 
   //calculating square of each input data
-  square = "";
+  square = [];
   for (i = 0; i < length; i++) {
-    square += Math.pow(inputArray[i],2) + ",";
+    square[i] = Math.pow(inputArray[i],2);
   };
-  square = square.split(",");
-  square.pop();
 
   //calculating sum of square of input data
   sum = eval(square.join("+"));
