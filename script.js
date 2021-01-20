@@ -65,7 +65,7 @@ function inputing() {
   length = inputArray.length;
 };
 
-//calculate
+//calculating
 function calculating() {
   //calculating square of each input data
   square = [];
@@ -85,22 +85,21 @@ function calculating() {
 
 //warning that the data doesn't meet the requierments
 function warning() {
-  console.log("Your data doesn't meet the requierments");
-  document.getElementById("input").innerHTML = "Your data doesn't meet the requierments";
-  document.getElementById("square").innerHTML = "Your data doesn't meet the requierments";
-  document.getElementById("length").innerHTML = "Your data doesn't meet the requierments";
-  document.getElementById("sum").innerHTML = "Your data doesn't meet the requierments";
-  document.getElementById("mean").innerHTML = "Your data doesn't meet the requierments";
-  document.getElementById("root").innerHTML = "Your data doesn't meet the requierments";
-  $("#fileLabel, #input, #square, #length, #sum, #mean, #root").removeClass("border-primary");
-  $("#fileLabel, #input, #square, #length, #sum, #mean, #root").addClass("border-danger");
-  $("#dataReq").removeClass("text-secondary");
-  $("#dataReq").addClass("text-danger font-weight-bold");
-  $("#input, #square, #length, #sum, #mean, #root").addClass("text-danger");
+  console.log("Your data doesn't meet requierments");
+    $("#fileLabel").removeClass("border-primary");
+    $("#fileLabel").addClass("border-danger");
+    $("#dataReq").removeClass("text-secondary");
+    $("#dataReq").addClass("text-danger font-weight-bold");
+    $("#warning").removeClass("d-none");
+    $("#warning").show();
+    $("#result").hide();
 };
 
 //showing the data result
 function showResult() {
+  $("#warning").hide();
+  $("warning").addClass("d-none");
+  $("#result").show();
   console.log(inputArray);
   document.getElementById("input").innerHTML = inputArray.join("<p></p>");
   console.log(square);
