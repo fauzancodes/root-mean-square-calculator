@@ -1,145 +1,124 @@
-//for input file
-$(".custom-file-input").on("change", function() {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-});
-
-//declaring variable
-var input, extension, inputArray, length, square, sum, mean, root;
-
-//get the input file data
-function init() {
-  document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
-};
-
-function handleFileSelect(event) {
-  const reader = new FileReader();
-  reader.onload = handleFileLoad;
-  reader.readAsText(event.target.files[0]);
-};
-
-function handleFileLoad(event){
-  console.log(event);
-  input = event.target.result;
-};
-
-//calculating the rms 
-function calculation() {
-  //get the file input extension
-  extension = document.getElementById("fileInput").value.split(".").pop();
-  console.log(extension);
-
-  if (extension == "dat") {
-    inputing();
-    if (length > 1) {
-      calculating();
-      showResult();
-    }
-    else {
-      warning();
-    }
-  }
-  else {
-    if (extension == "txt") {
-      inputing();
-      if (length > 1) {
-        calculating();
-        showResult();
-      }
-      else {
-      warning();
-      }
-    }
-    else {
-      warning();
-    }
-  }
-};
-
-//inputing
-function inputing() {
-  //converting input data from string to array
-  inputArray = input.split("\n");
-
-  //determining input data length
-  length = inputArray.length;
-};
-
-//calculating
-function calculating() {
-  //calculating square of each input data
-  square = [];
-  for (i = 0; i < length; i++) {
-    square[i] = Math.pow(inputArray[i],2);
-  };
-
-  //calculating sum of square of input data
-  sum = eval(square.join("+"));
-
-  //calculating the mean square of input data
-  mean = sum/length;
-
-  //calculating the root mean square of input data
-  root = Math.sqrt(mean);
-};
-
-//warning that the data doesn't meet the requierments
-function warning() {
-  console.log("Your data doesn't meet requierments");
-  $("#fileLabel").removeClass("border-primary");
-  $("#fileLabel").addClass("border-danger");
-  $("#dataReq").removeClass("text-secondary");
-  $("#dataReq").addClass("text-danger font-weight-bold");
-  $("#details").addClass("d-none");
-  $("#result").hide();
-  $("#details-show").addClass("d-none");
-  $("#warning").removeClass("d-none").show();
-};
-
-//showing the data result
-function showResult() {
-  $("#warning").hide();
-  $("#result").show();
-  $("#details-show").removeClass("d-none").show();
-  console.log(inputArray);
-  document.getElementById("input").innerHTML = inputArray.join("<p></p>");
-  console.log(square);
-  document.getElementById("square").innerHTML = square.join("<p></p>");
-  console.log(length);
-  document.getElementById("length").innerHTML = length;
-  console.log(sum);
-  document.getElementById("sum").innerHTML = sum;
-  console.log(mean);
-  document.getElementById("mean").innerHTML = mean;
-  console.log(root);
-  document.getElementById("root").innerHTML = root;
-  document.getElementById("root-big").innerHTML = root.toFixed(8);
-  $("#fileLabel").removeClass("border-danger text-danger");
-  $("#fileLabel").addClass("border-primary");
-  $("#dataReq").removeClass("text-danger font-weight-bold");
-  $("#dataReq").addClass("text-secondary");
-};
-
-//copy to clipboard
-function copy(selector){
-  var $temp = $("<div>");
-  $("body").append($temp);
-  $temp.attr("contenteditable", true)
-       .html($(selector).html()).select()
-       .on("focus", function() { document.execCommand('selectAll',false,null); })
-       .focus();
-  document.execCommand("copy");
-  $temp.remove();
-};
-
-//details button
-$("#details-show").click(function() {
-  $("#result").hide();
-  $("#details").removeClass("d-none").show();
-  $("#details-show").hide();
-});
-$("#details-hide").click(function() {
-  $("#details").hide();
-  $("#result").show();
-  $("#details-show").show();
-});
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/5c503e8b03.js" crossorigin="anonymous"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <link rel=icon href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/svgs/solid/square-root-alt.svg>
+        <title>RMS Calculator</title>
+    </head>
+    <body onload="init()">
+        <div class="container">
+            <h1 class="pt-5 font-weight-bold">Root Mean Square (RMS) Calculator</h1>
+            <br/>
+            <br/>
+            <h3>Formula: \(RMS=\left(\sqrt{{\sum_i^n x_i^2\over n}}\right)\)</h3>
+            <br/>
+            <p>Where:
+                <ul>
+                    <li>\(RMS=\) root mean square</li>
+                    <li>\(x=\) values of x-variable in sample</li>
+                    <li>\(n=\) length of values</li>
+                    <li>\(i=\) index of values (1, 2, 3, ..., \(n\))</li>
+                </ul>
+            </p>
+            <p class="mb-4">Input your data here<i class="fas fa-chevron-circle-down text-primary px-2"></i>
+                <div class="custom-file mb-3">
+                    <input id="fileInput" type="file" class="custom-file-input" name="filename">
+                    <label id="fileLabel" class="custom-file-label text-secondary border-primary" for="customFile">.txt or .dat</label>
+                </div>
+                <div id ="dataReq" class="text-secondary">
+                    Data Requierments:
+                    <ol>
+                        <li>Your data should be more than one values</li>
+                        <li>Your data should be in one column</li>
+                        <li>Your data extension should be .txt or .dat</li>
+                    </ol>
+                </div>
+            </p>
+            <div class="mb-5">
+                <button onclick="calculation()" class="btn btn-primary btn-block">Calculate</button>
+            </div>
+            <h2 id="warning" class="pb-5 font-weight-bold d-none text-center text-danger">Your Data Doesn't Meet The Requierments</h2>
+            <div id="details" class="d-none">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">Input Data \(\left(x_i\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                            <div id="input" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;max-height: 250px;">
+                                <span class="text-secondary">Input Data</span>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#input')">copy</button>
+                        </p>
+                        <br/>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">Square of Each Input Data \(\left(x_i^2\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                            <div id="square" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;max-height: 250px;">
+                                <span class="text-secondary">Square of Each Input Data</span>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#square')">copy</button>
+                        </p>
+                        <br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">Length of Input Data \(\left(n\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                            <div id="length" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;">
+                                <span class="text-secondary">Length of Input Data</span>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#length')">copy</button>
+                        </p>
+                        <br/>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">Sum of Square of Input Data \(\left(\sum_i^n x_i^2\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                            <div id="sum" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;">
+                                <span class="text-secondary">Sum of Square of Input Data</span>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#sum')">copy</button>
+                        </p>
+                        <br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">Mean Square of Input Data \(\left({\sum_i^n x_i^2\over n}\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                            <div id="mean" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;">
+                                <span class="text-secondary">Mean Square of Input Data</span>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#mean')">copy</button>
+                        </p>
+                        <br/>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4 font-weight-bold">Root Mean Square of Input Data \(\left(\sqrt{{\sum_i^n x_i^2\over n}}\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                            <div id="root" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 font-weight-bold" style="max-width: fit-content;">
+                                <span class="text-secondary">Root Mean Square of Input Data</span>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#root')">copy</button>
+                        </p>
+                        <br/>
+                    </div>
+                </div>
+                <button id="details-hide" class="btn btn-primary btn-block">Hide Details</button>
+            </div>
+            <h3 id="result" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-nowrap">\(RMS=\)
+                <span id="root-big" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;max-height: 250px;">
+                    <span class="text-secondary">\(RMS\)</span>
+                </span>
+                <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#root-big')">copy</button>
+            </h3>
+            <br/>
+            <button id="details-show" class="d-none btn btn-primary btn-block">Show Details</button>
+            <br/>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
