@@ -18,7 +18,7 @@
             <h1 class="pt-5 font-weight-bold">Root Mean Square (RMS) Calculator</h1>
             <br/>
             <br/>
-            <h3>Formula: \(RMS=\left(\sqrt{{\sum_i^n x_i^2\over n}}\right)\)</h3>
+            <h3 class="overflow-auto">Formula: \(RMS=\left(\sqrt{{\sum_i^n x_i^2\over n}}\right)\)</h3>
             <br/>
             <p>Where:
                 <ul>
@@ -34,7 +34,7 @@
                     <label id="fileLabel" class="custom-file-label text-secondary border-primary" for="customFile">.txt or .dat</label>
                 </div>
                 <div id ="dataReq" class="text-secondary">
-                    Data Requirements:
+                    Data Requierments:
                     <ol>
                         <li>Your data should be more than one values</li>
                         <li>Your data should be in one column</li>
@@ -45,22 +45,22 @@
             <div class="mb-5">
                 <button onclick="calculation()" class="btn btn-primary btn-block">Calculate</button>
             </div>
-            <h2 id="warning" class="pb-5 font-weight-bold d-none text-center text-danger">Your Data Doesn't Meet The Requirements</h2>
+            <h2 id="warning" class="pb-5 font-weight-bold d-none text-center text-danger">Your Data Doesn't Meet The Requierments</h2>
             <div id="details" class="d-none">
                 <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <p class="mb-4">Input Data \(\left(x_i\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">\(x_i\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
                             <div id="input" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;max-height: 250px;">
-                                <span class="text-secondary">Input Data</span>
+                                <span class="text-secondary">\(x_i\)</span>
                             </div>
                             <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#input')">copy</button>
                         </p>
                         <br/>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <p class="mb-4">Square of Each Input Data \(\left(x_i^2\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">\(x_i^2\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
                             <div id="square" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;max-height: 250px;">
-                                <span class="text-secondary">Square of Each Input Data</span>
+                                <span class="text-secondary">\(x_i^2\)</span>
                             </div>
                             <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#square')">copy</button>
                         </p>
@@ -68,19 +68,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <p class="mb-4">Length of Input Data \(\left(n\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">\(n\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
                             <div id="length" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;">
-                                <span class="text-secondary">Length of Input Data</span>
+                                <span class="text-secondary">\(n\)</span>
                             </div>
                             <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#length')">copy</button>
                         </p>
                         <br/>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <p class="mb-4">Sum of Square of Input Data \(\left(\sum_i^n x_i^2\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">\(\sum_i^n x_i^2\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
                             <div id="sum" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;">
-                                <span class="text-secondary">Sum of Square of Input Data</span>
+                                <span class="text-secondary">\(\sum_i^n x_i^2\)</span>
                             </div>
                             <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#sum')">copy</button>
                         </p>
@@ -88,19 +88,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <p class="mb-4">Mean Square of Input Data \(\left({\sum_i^n x_i^2\over n}\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4">\({\sum_i^n x_i^2\over n}\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
                             <div id="mean" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;">
-                                <span class="text-secondary">Mean Square of Input Data</span>
+                                <span class="text-secondary">\({\sum_i^n x_i^2\over n}\)</span>
                             </div>
                             <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#mean')">copy</button>
                         </p>
                         <br/>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <p class="mb-4 font-weight-bold">Root Mean Square of Input Data \(\left(\sqrt{{\sum_i^n x_i^2\over n}}\right)\)<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="mb-4 font-weight-bold">RMS<i class="fas fa-chevron-circle-down text-primary px-2"></i> 
                             <div id="root" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2 font-weight-bold" style="max-width: fit-content;">
-                                <span class="text-secondary">Root Mean Square of Input Data</span>
+                                <span class="text-secondary">RMS</span>
                             </div>
                             <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#root')">copy</button>
                         </p>
@@ -109,8 +109,8 @@
                 </div>
                 <button id="details-hide" class="btn btn-primary btn-block">Hide Details</button>
             </div>
-            <h3 id="result" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-nowrap">\(RMS=\)
-                <span id="root-big" class="border border-primary rounded overflow-auto p-2 text-nowrap mx-2" style="max-width: fit-content;max-height: 250px;">
+            <h3 id="result" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 overflow-auto text-nowrap">\(RMS=\)
+                <span id="root-big" class="overflow-auto pb-2 pr-2 pl-2 text-nowrap mx-2" style="max-width: fit-content;max-height: 250px;">
                     <span class="text-secondary">\(RMS\)</span>
                 </span>
                 <button class="btn btn-outline-primary btn-sm m-2" onclick="copy('#root-big')">copy</button>
