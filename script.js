@@ -113,7 +113,7 @@ function showResult() {
   document.getElementById("mean").innerHTML = mean;
   console.log(root);
   document.getElementById("root").innerHTML = root;
-  document.getElementById("root-big").innerHTML = root.toFixed(8);
+  document.getElementById("root-big").innerHTML = root;
   $("#fileLabel").removeClass("border-danger text-danger");
   $("#fileLabel").addClass("border-primary");
   $("#dataReq").removeClass("text-danger font-weight-bold");
