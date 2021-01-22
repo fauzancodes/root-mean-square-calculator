@@ -86,20 +86,21 @@ function calculating() {
 //warning that the data doesn't meet the requierments
 function warning() {
   console.log("Your data doesn't meet requierments");
-    $("#fileLabel").removeClass("border-primary");
-    $("#fileLabel").addClass("border-danger");
-    $("#dataReq").removeClass("text-secondary");
-    $("#dataReq").addClass("text-danger font-weight-bold");
-    $("#warning").removeClass("d-none");
-    $("#warning").show();
-    $("#result").hide();
+  $("#fileLabel").removeClass("border-primary");
+  $("#fileLabel").addClass("border-danger");
+  $("#dataReq").removeClass("text-secondary");
+  $("#dataReq").addClass("text-danger font-weight-bold");
+  $("#details").addClass("d-none");
+  $("#result").hide();
+  $("#details-show").addClass("d-none");
+  $("#warning").removeClass("d-none").show();
 };
 
 //showing the data result
 function showResult() {
   $("#warning").hide();
-  $("warning").addClass("d-none");
   $("#result").show();
+  $("#details-show").removeClass("d-none").show();
   console.log(inputArray);
   document.getElementById("input").innerHTML = inputArray.join("<p></p>");
   console.log(square);
@@ -112,8 +113,9 @@ function showResult() {
   document.getElementById("mean").innerHTML = mean;
   console.log(root);
   document.getElementById("root").innerHTML = root;
-  $("#fileLabel, #input, #square, #length, #sum, #mean, #root").removeClass("border-danger text-danger");
-  $("#fileLabel, #input, #square, #length, #sum, #mean, #root").addClass("border-primary");
+  document.getElementById("root-big").innerHTML = root.toFixed(8);
+  $("#fileLabel").removeClass("border-danger text-danger");
+  $("#fileLabel").addClass("border-primary");
   $("#dataReq").removeClass("text-danger font-weight-bold");
   $("#dataReq").addClass("text-secondary");
 };
@@ -129,3 +131,15 @@ function copy(selector){
   document.execCommand("copy");
   $temp.remove();
 };
+
+//details button
+$("#details-show").click(function() {
+  $("#result").hide();
+  $("#details").removeClass("d-none").show();
+  $("#details-show").hide();
+});
+$("#details-hide").click(function() {
+  $("#details").hide();
+  $("#result").show();
+  $("#details-show").show();
+});
