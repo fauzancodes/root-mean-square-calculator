@@ -99,6 +99,7 @@ function warning() {
 //showing the data result
 function showResult() {
   $("#warning").hide();
+  $("#details").hide();
   $("#result").show();
   $("#details-show").removeClass("d-none").show();
   console.log(inputArray);
